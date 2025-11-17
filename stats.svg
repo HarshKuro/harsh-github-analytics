@@ -30,30 +30,30 @@
 
   <!-- Stars -->
   <text x="25" y="80" class="label">Stars</text>
-  <text x="180" y="80" class="value">{{stars}}</text>
+  <text x="180" y="80" class="value">1</text>
 
   <!-- Forks -->
   <text x="25" y="105" class="label">Forks</text>
-  <text x="180" y="105" class="value">{{forks}}</text>
+  <text x="180" y="105" class="value">8</text>
 
   <!-- Commits -->
   <text x="25" y="130" class="label">All-time contributions</text>
-  <text x="180" y="130" class="value">{{all_time_contributions}}</text>
+  <text x="180" y="130" class="value">584</text>
 
   <!-- LOC -->
   <text x="25" y="155" class="label">Lines of code changed</text>
-  <text x="180" y="155" class="value">{{loc_changed}}</text>
+  <text x="180" y="155" class="value">3461447</text>
 
   <!-- Languages count -->
   <text x="25" y="180" class="label">Languages used</text>
-  <text x="180" y="180" class="value">{{languages_used}}</text>
+  <text x="180" y="180" class="value">67</text>
 
   <!-- Top languages -->
   <text x="25" y="205" class="label">Top languages</text>
 
   <!-- Will be replaced by Action -->
   <text x="180" y="205" class="lang">
-    {{top_languages}}
+    C, C++, Java
   </text>
 
 </svg>
