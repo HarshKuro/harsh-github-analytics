@@ -1,59 +1,28 @@
-<svg width="480" height="240" viewBox="0 0 480 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="480" height="210" viewBox="0 0 480 210" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .title {
-      font: 600 20px 'Segoe UI', sans-serif;
-      fill: #0d6efd;
-    }
-    .label {
-      font: 14px 'Segoe UI', sans-serif;
-      fill: #555;
-    }
-    .value {
-      font: 600 14px 'Segoe UI', sans-serif;
-      fill: #000;
-    }
-    .lang {
-      font: 13px 'Segoe UI', sans-serif;
-      fill: #000;
-    }
-    .bg {
-      fill: #fff;
-      stroke: #e5e7eb;
-      rx: 12;
-    }
+    .title { font: 600 20px 'Segoe UI', sans-serif; fill: #0d6efd; }
+    .label { font: 14px 'Segoe UI', sans-serif; fill: #555; }
+    .value { font: 600 14px 'Segoe UI', sans-serif; fill: #000; }
+    .lang { font: 600 13px 'Segoe UI', sans-serif; fill: #000; }
+    .bg { fill: #fff; stroke: #e5e7eb; rx: 12; }
   </style>
 
   <rect class="bg" x="0" y="0" width="100%" height="100%"/>
 
-  <!-- Title -->
   <text x="25" y="40" class="title">GitHub Developer Metrics</text>
 
-  <!-- Stars -->
   <text x="25" y="80" class="label">Stars</text>
-  <text x="180" y="80" class="value">1</text>
+  <text x="180" y="80" class="value">{{stars}}</text>
 
-  <!-- Forks -->
   <text x="25" y="105" class="label">Forks</text>
-  <text x="180" y="105" class="value">8</text>
+  <text x="180" y="105" class="value">{{forks}}</text>
 
-  <!-- Commits -->
-  <text x="25" y="130" class="label">All-time contributions</text>
-  <text x="180" y="130" class="value">584</text>
+  <text x="25" y="130" class="label">Lines of code changed</text>
+  <text x="180" y="130" class="value">{{loc_changed}}</text>
 
-  <!-- LOC -->
-  <text x="25" y="155" class="label">Lines of code changed</text>
-  <text x="180" y="155" class="value">3461447</text>
+  <text x="25" y="155" class="label">Languages used</text>
+  <text x="180" y="155" class="value">{{languages_used}}</text>
 
-  <!-- Languages count -->
-  <text x="25" y="180" class="label">Languages used</text>
-  <text x="180" y="180" class="value">67</text>
-
-  <!-- Top languages -->
-  <text x="25" y="205" class="label">Top languages</text>
-
-  <!-- Will be replaced by Action -->
-  <text x="180" y="205" class="lang">
-    C, C++, Java
-  </text>
-
+  <text x="25" y="180" class="label">Top languages</text>
+  <text x="180" y="180" class="lang">{{top_languages}}</text>
 </svg>
