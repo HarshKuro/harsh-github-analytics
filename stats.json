@@ -1,8 +1,22 @@
 {
   "stars": 1,
   "forks": 8,
-  "all_time_contributions": 582,
-  "loc_changed": 3461300,
-  "repo_views_14d": 0,
-  "repos_contributed": 100
+  "all_time_contributions": 584,
+  "loc_changed": 3461447,
+  "repos_contributed": 100,
+  "languages_used": 67,
+  "top_languages": [
+    {
+      "language": "C",
+      "bytes": 6091111701
+    },
+    {
+      "language": "C++",
+      "bytes": 810602067
+    },
+    {
+      "language": "Java",
+      "bytes": 90182131
+    }
+  ]
 }
