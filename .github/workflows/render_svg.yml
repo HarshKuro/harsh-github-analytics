@@ -1,0 +1,43 @@
+name: Render Stats SVG
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Load stats
+        id: stats
+        run: |
+          echo "stats=$(cat stats.json | jq -r tostring)" >> $GITHUB_OUTPUT
+
+      - name: Replace placeholders in SVG
+        run: |
+          STARS=$(jq -r ".stars" stats.json)
+          FORKS=$(jq -r ".forks" stats.json)
+          COMMITS=$(jq -r ".all_time_contributions" stats.json)
+          LOC=$(jq -r ".loc_changed" stats.json)
+          LANG_USED=$(jq -r ".languages_used" stats.json)
+          TOP_LANG=$(jq -r '.top_languages | map(.language) | join(", ")' stats.json)
+
+          sed -i "s/{{stars}}/$STARS/g" stats.svg
+          sed -i "s/{{forks}}/$FORKS/g" stats.svg
+          sed -i "s/{{all_time_contributions}}/$COMMITS/g" stats.svg
+          sed -i "s/{{loc_changed}}/$LOC/g" stats.svg
+          sed -i "s/{{languages_used}}/$LANG_USED/g" stats.svg
+          sed -i "s/{{top_languages}}/$TOP_LANG/g" stats.svg
+
+      - name: Commit updated SVG
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add stats.svg
+          git commit -m "Updated stats.svg" || echo "No changes"
+          git push
