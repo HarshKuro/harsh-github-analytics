@@ -24,7 +24,7 @@ jobs:
       - name: Run metrics script
         env:
           TOKEN: ${{ secrets.GH_STATS_TOKEN }}
-          USERNAME: <YOUR_GITHUB_USERNAME>
+          USERNAME: HarshKuro
         run: python stats.py
 
       - name: Commit and push result
