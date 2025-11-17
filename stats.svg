@@ -12,17 +12,17 @@
   <text x="25" y="40" class="title">GitHub Developer Metrics</text>
 
   <text x="25" y="80" class="label">Stars</text>
-  <text x="180" y="80" class="value">{{stars}}</text>
+  <text x="180" y="80" class="value">1</text>
 
   <text x="25" y="105" class="label">Forks</text>
-  <text x="180" y="105" class="value">{{forks}}</text>
+  <text x="180" y="105" class="value">8</text>
 
   <text x="25" y="130" class="label">Lines of code changed</text>
-  <text x="180" y="130" class="value">{{loc_changed}}</text>
+  <text x="180" y="130" class="value">3,461,628</text>
 
   <text x="25" y="155" class="label">Languages used</text>
-  <text x="180" y="155" class="value">{{languages_used}}</text>
+  <text x="180" y="155" class="value">64</text>
 
   <text x="25" y="180" class="label">Top languages</text>
-  <text x="180" y="180" class="lang">{{top_languages}}</text>
+  <text x="180" y="180" class="lang">TypeScript, Assembly, Objective-C++</text>
 </svg>
