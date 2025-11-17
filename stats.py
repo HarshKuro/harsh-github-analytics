@@ -5,21 +5,35 @@ USERNAME = os.getenv("USERNAME")
 
 headers = {"Authorization": f"Bearer {TOKEN}"}
 
-# Fetch repos
+# ================================
+# FETCH ALL REPOS (public + private)
+# ================================
 repos = []
 page = 1
+
 while True:
-    r = requests.get(f"https://api.github.com/user/repos?per_page=100&page={page}", headers=headers)
+    r = requests.get(
+        f"https://api.github.com/user/repos?per_page=100&page={page}",
+        headers=headers
+    )
     batch = r.json()
+
     if not batch or isinstance(batch, dict):
         break
+
     repos.extend(batch)
     page += 1
 
-stars = sum(r["stargazers_count"] for r in repos)
-forks = sum(r["forks_count"] for r in repos)
+# ================================
+# BASIC METRICS
+# ================================
+stars = sum(repo["stargazers_count"] for repo in repos)
+forks = sum(repo["forks_count"] for repo in repos)
 repo_count = len(repos)
 
+# ================================
+# COMMITS + LINES OF CODE
+# ================================
 total_commits = 0
 total_additions = 0
 total_deletions = 0
@@ -52,24 +66,44 @@ for repo in repos:
 
         page += 1
 
-# Traffic API (14-day repo views)
-views = 0
-for repo in repos:
-    traffic = requests.get(
-        f"https://api.github.com/repos/{repo['owner']['login']}/{repo['name']}/traffic/views",
-        headers=headers
-    ).json()
-    if "count" in traffic:
-        views += traffic["count"]
+# ================================
+# LANGUAGES (TOP 3 + TOTAL COUNT)
+# ================================
+language_map = {}  # {lang: total_bytes}
 
+for repo in repos:
+    lang_url = repo["languages_url"]
+    lang_data = requests.get(lang_url, headers=headers).json()
+
+    for lang, bytes_of_code in lang_data.items():
+        language_map[lang] = language_map.get(lang, 0) + bytes_of_code
+
+sorted_langs = sorted(language_map.items(), key=lambda x: x[1], reverse=True)
+
+top_languages = sorted_langs[:3]  # [(lang, bytes), ...]
+
+languages_used = len(language_map)
+
+# Convert top languages to simple list format
+top_languages_formatted = [
+    {"language": lang, "bytes": bytes_of_code}
+    for lang, bytes_of_code in top_languages
+]
+
+# ================================
+# OUTPUT FINAL METRICS
+# ================================
 stats = {
     "stars": stars,
     "forks": forks,
     "all_time_contributions": total_commits,
     "loc_changed": total_additions + total_deletions,
-    "repo_views_14d": views,
-    "repos_contributed": repo_count
+    "repos_contributed": repo_count,
+    "languages_used": languages_used,
+    "top_languages": top_languages_formatted,
 }
 
 with open("stats.json", "w") as f:
     json.dump(stats, f, indent=2)
+
+print("Stats generated successfully!")
