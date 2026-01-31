@@ -1,12 +1,12 @@
 {
   "stars": "1",
   "forks": "8",
-  "loc_changed": "3,683,644",
-  "repos_contributed": "111",
+  "loc_changed": "3,683,402",
+  "repos_contributed": "107",
   "languages_used": "66",
   "top_languages": [
     "TypeScript",
-    "Assembly",
-    "Objective-C++"
+    "Objective-C++",
+    "HTML"
   ]
 }
