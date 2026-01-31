@@ -70,7 +70,7 @@ for repo in repos:
 # ================================
 # LANGUAGES (IGNORING C, C++, JAVA)
 # ================================
-IGNORE = {"C", "C++", "C#", "Java"}  # you can expand this anytime
+IGNORE = {"C", "C++", "C#", "Java", "Objective-C++"}  # you can expand this anytime
 
 language_map = {}
 
